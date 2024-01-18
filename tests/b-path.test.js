@@ -1,18 +1,15 @@
-import { describe, it } from 'node:test';
-import assert from 'node:assert/strict';
+import { describe, it } from "node:test";
+import assert from "node:assert/strict";
+import bPath from "../lib/b-path.js";
 
-describe("A thing", () => {
-  it("should work", () => {
-    assert.strictEqual(1, 1);
-  });
+describe("b-path", () => {
+  describe("POSIX", () => {
+    it("path.delimiter should provide the path delimiter", () => {
+      assert.strictEqual(bPath.delimiter, ":");
+    });
 
-  it("should be ok", () => {
-    assert.strictEqual(2, 2);
-  });
-
-  describe("a nested thing", () => {
-    it("should work", () => {
-      assert.strictEqual(3, 3);
+    it("path.sep should provide the path separator", () => {
+      assert.strictEqual(bPath.sep, "/");
     });
   });
 });
