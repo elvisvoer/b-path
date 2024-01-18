@@ -1,0 +1,25 @@
+{
+  "name": "b-path",
+  "version": "0.0.0",
+  "description": "Platform agnostic PATH module implementation",
+  "author": {
+    "name": "Elvis Adomnica",
+    "url": "https://erranto.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elvisvoer/b-path.git"
+  },
+  "scripts": {
+    "test": "node --test tests"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": false,
+  "module": "./lib/b-path.js",
+  "exports": {
+    ".": {
+      "import": "./lib/b-path.js"
+    }
+  }
+}
