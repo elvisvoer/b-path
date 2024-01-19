@@ -11,5 +11,19 @@ describe("b-path", () => {
     it("path.sep should provide the path separator", () => {
       assert.strictEqual(bPath.sep, "/");
     });
+
+    // input | expected result
+    [
+      ["", false],
+      [".", false],
+      ["foo/", false],
+      ["foo.bar", false],
+      ["/foo/bar", true],
+      ["/baz/..", true],
+    ].forEach(([input, result]) => {
+      it(`path.isAbsolute("${input}") should return '${result}'`, () => {
+        assert.strictEqual(bPath.isAbsolute(input), result);
+      });
+    });
   });
 });
