@@ -46,6 +46,7 @@ describe("b-path", () => {
     [
       [{}, ""],
       [{ root: "/root" }, "/root"],
+      [{ root: "/root", name: "file", ext: ".txt" }, "/root/file.txt"],
     ].forEach(([input, result]) => {
       it(`path.format(${JSON.stringify(
         input
