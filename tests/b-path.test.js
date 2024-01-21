@@ -47,6 +47,8 @@ describe("b-path", () => {
       [{}, ""],
       [{ root: "/root" }, "/root"],
       [{ root: "/root", name: "file", ext: ".txt" }, "/root/file.txt"],
+      // should add the extension "." if missing
+      [{ root: "/root", name: "file", ext: "txt" }, "/root/file.txt"],
     ].forEach(([input, result]) => {
       it(`path.format(${JSON.stringify(
         input
