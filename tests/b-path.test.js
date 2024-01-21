@@ -49,6 +49,8 @@ describe("b-path", () => {
       [{ root: "/root", name: "file", ext: ".txt" }, "/root/file.txt"],
       // should add the extension "." if missing
       [{ root: "/root", name: "file", ext: "txt" }, "/root/file.txt"],
+      // should ignore 'name' and 'ext' if 'base' is present
+      [{ root: "/root", base: "base.sh", name: "file", ext: ".txt" }, "/root/base.sh"],
     ].forEach(([input, result]) => {
       it(`path.format(${JSON.stringify(
         input
