@@ -41,5 +41,14 @@ describe("b-path", () => {
         });
       }
     );
+
+    // input | expected result
+    [[{}, ""]].forEach(([input, result]) => {
+      it(`path.format(${JSON.stringify(
+        input
+      )}) should return '${result}'`, () => {
+        assert.strictEqual(bPath.format(input), result);
+      });
+    });
   });
 });
