@@ -51,6 +51,8 @@ describe("b-path", () => {
       [{ root: "/root", name: "file", ext: "txt" }, "/root/file.txt"],
       // should ignore 'name' and 'ext' if 'base' is present
       [{ root: "/root", base: "base.sh", name: "file", ext: ".txt" }, "/root/base.sh"],
+      // should ignore 'root' if 'dir' is present
+      [{ root: "/root", dir: "/dir", base: "file.txt"}, "/dir/file.txt"],
     ].forEach(([input, result]) => {
       it(`path.format(${JSON.stringify(
         input
