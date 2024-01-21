@@ -43,7 +43,10 @@ describe("b-path", () => {
     );
 
     // input | expected result
-    [[{}, ""]].forEach(([input, result]) => {
+    [
+      [{}, ""],
+      [{ root: "/root" }, "/root"],
+    ].forEach(([input, result]) => {
       it(`path.format(${JSON.stringify(
         input
       )}) should return '${result}'`, () => {
