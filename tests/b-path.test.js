@@ -52,9 +52,26 @@ describe("b-path", () => {
       // should add the extension "." if missing
       [{ root: "/root/", name: "file", ext: "txt" }, "/root/file.txt"],
       // should ignore 'name' and 'ext' if 'base' is present
-      [{ root: "/root/", base: "base.sh", name: "file", ext: ".txt" }, "/root/base.sh"],
+      [
+        { root: "/root/", base: "base.sh", name: "file", ext: ".txt" },
+        "/root/base.sh",
+      ],
       // should ignore 'root' if 'dir' is present
-      [{ root: "/root/", dir: "/dir", base: "file.txt"}, "/dir/file.txt"],
+      [{ root: "/root/", dir: "/dir", base: "file.txt" }, "/dir/file.txt"],
+      // additional tests
+      [{ root: "" }, ""],
+      [{ dir: "" }, ""],
+      [{ dir: "." }, "./"],
+      [{ dir: "/" }, "//"], // really?!
+      [{ dir: "foo" }, "foo/"],
+      [{ root: "/", dir: "/" }, "/"], // 'root' === 'dir' so no separator
+      [{ root: ".", dir: "." }, "."], // same here
+      [{ root: "/", dir: "./" }, ".//"], // results seem not to be normalized
+      [{ root: "/", dir: "./", base: "../" }, ".//../"], // same here
+      [{ ext: "txt" }, ".txt"], // dot is added even when only 'ext' is provided
+      [{ ext: "." }, "."], // starts with dot so no changes
+      [{ ext: ".." }, ".."], // same here
+      [{ ext: "/" }, "./"], // makes no sense but respects the idea of adding a dot
     ].forEach(([input, result]) => {
       it(`path.format(${JSON.stringify(
         input
