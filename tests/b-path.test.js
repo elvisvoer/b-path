@@ -79,5 +79,21 @@ describe("b-path", () => {
         assert.strictEqual(bPath.format(input), result);
       });
     });
+
+    [undefined, null, NaN, 42, BigInt(42), "", [], Symbol(), false].forEach(
+      (input) => {
+        it(`path.format should throw TypeError if input type is ${typeof input}`, () => {
+          assert.throws(
+            () => {
+              bPath.format(input);
+            },
+            {
+              name: "TypeError",
+              message: `The "pathObject" argument must be of type object. Received ${typeof input}`,
+            }
+          );
+        });
+      }
+    );
   });
 });
