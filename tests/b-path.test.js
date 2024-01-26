@@ -26,21 +26,24 @@ describe("b-path", () => {
       });
     });
 
-    [undefined, null, NaN, 42, BigInt(42), {}, [], Symbol(), false].forEach(
-      (input) => {
-        it(`path.isAbsolute should throw TypeError if input type is ${typeof input}`, () => {
-          assert.throws(
-            () => {
-              bPath.isAbsolute(input);
-            },
-            {
-              name: "TypeError",
-              message: `The "path" argument must be of type string. Received ${typeof input}`,
-            }
-          );
-        });
-      }
-    );
+    // functions expecting a string input
+    ["isAbsolute", "normalize"].forEach((fn) => {
+      [undefined, null, NaN, 42, BigInt(42), {}, [], Symbol(), false].forEach(
+        (input) => {
+          it(`path.${fn} should throw TypeError if input type is ${typeof input}`, () => {
+            assert.throws(
+              () => {
+                bPath[fn](input);
+              },
+              {
+                name: "TypeError",
+                message: `The "path" argument must be of type string. Received ${typeof input}`,
+              }
+            );
+          });
+        }
+      );
+    });
 
     // input | expected result
     [
