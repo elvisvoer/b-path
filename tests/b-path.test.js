@@ -111,6 +111,7 @@ describe("b-path", () => {
       ["foo/bar/.", "foo/bar"],
       ["foo/bar/./baz", "foo/bar/baz"],
       ["foo/bar/././baz", "foo/bar/baz"],
+      ["foo/bar/../baz", "foo/baz"],
     ].forEach(([input, result]) => {
       it(`path.normalize(${JSON.stringify(
         input
